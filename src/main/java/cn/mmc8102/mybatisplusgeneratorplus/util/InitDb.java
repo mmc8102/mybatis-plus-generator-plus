@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @author ChenYu 初始化数据库类
+ * @author wangli 初始化数据库类
  */
 public class InitDb {
 

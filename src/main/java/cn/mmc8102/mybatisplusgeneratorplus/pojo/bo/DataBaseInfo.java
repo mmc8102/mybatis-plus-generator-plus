@@ -3,8 +3,7 @@ package cn.mmc8102.mybatisplusgeneratorplus.pojo.bo;
 import lombok.Data;
 
 /**
- * @author yu_chen
- * @date 2019/11/13 17:54
+ * @author wangli
  */
 @Data
 public class DataBaseInfo {

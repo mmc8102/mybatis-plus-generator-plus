@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- * @author chenyu 数据库连接驱动
+ * @author wangli 数据库连接驱动
  */
 public class JdbcUtil {
 

@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * @author ChenYu
+ * @author wangli
  * 自动生成的工具类
  */
 public class GenerateUtil {

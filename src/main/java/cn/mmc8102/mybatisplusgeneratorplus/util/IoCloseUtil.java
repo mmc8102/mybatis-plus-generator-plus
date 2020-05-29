@@ -7,8 +7,7 @@ import java.io.Closeable;
 /**
  * 流关闭工具类
  *
- * @author yu_chen
- * @date 2019年11月14日17:51:19
+ * @author wangli
  */
 public class IoCloseUtil {
     /**

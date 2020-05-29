@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * JSON的驼峰和下划线互转帮助类
  *
- * @author yangzhilong
+ * @author wangli
  */
 public class FieldNameUtil {
 

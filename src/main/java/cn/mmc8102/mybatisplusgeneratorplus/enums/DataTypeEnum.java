@@ -3,8 +3,7 @@ package cn.mmc8102.mybatisplusgeneratorplus.enums;
 import lombok.AllArgsConstructor;
 
 /**
- * @author yu_chen
- * @date 2019/11/14 13:24
+ * @author wangli
  */
 @AllArgsConstructor
 public enum DataTypeEnum {

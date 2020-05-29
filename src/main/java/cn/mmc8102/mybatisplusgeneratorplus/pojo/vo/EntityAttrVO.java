@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * 实体类属性对象
  *
- * @author ChenYu
+ * @author wangli
  */
 @Data
 @AllArgsConstructor

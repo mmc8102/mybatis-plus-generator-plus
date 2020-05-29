@@ -3,7 +3,7 @@ package cn.mmc8102.mybatisplusgeneratorplus.pojo.bo;
 import lombok.Data;
 
 /**
- * @author yu_chen
+ * @author wangli
  **/
 @Data
 public class BasePackage implements Cloneable {

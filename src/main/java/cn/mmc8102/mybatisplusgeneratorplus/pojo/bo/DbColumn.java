@@ -6,7 +6,7 @@ package cn.mmc8102.mybatisplusgeneratorplus.pojo.bo;
 import lombok.Data;
 
 /**
- * @author ChenYu 数据库表结构对象
+ * @author wangli 数据库表结构对象
  */
 @Data
 public class DbColumn {

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author ChenYu 一个数据库表所具有的属性
+ * @author wangli 一个数据库表所具有的属性
  */
 @Data
 public class EntityVO {

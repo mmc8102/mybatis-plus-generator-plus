@@ -1,8 +1,7 @@
 package cn.mmc8102.mybatisplusgeneratorplus.constant;
 
 /**
- * @author yu_chen
- * @date 2019/11/13 16:58
+ * @author wangli
  */
 public interface DataBaseConstant {
 

@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * @author ChenYu
+ * @author wangli
  */
 @Data
 public class Table {

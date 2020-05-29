@@ -41,7 +41,7 @@ public class InitDb {
      * @throws DocumentException
      */
     public static void main(String[] args) throws DocumentException {
-        String path = System.getProperty("user.dir") + "\\GenerateConfig.xml";
+        String path = System.getProperty("user.dir") + "/GenerateConfig.xml";
         List<EntityVO> entitys = InitDb.getInstence(ConfigParser.getConfig(path)).initTables();
 
         System.out.println(entitys);

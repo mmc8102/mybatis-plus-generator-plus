@@ -26,7 +26,7 @@ import java.util.Map;
 public class ConfigParser {
 
     public static void main(String[] args) throws DocumentException {
-        String path = System.getProperty("user.dir") + "\\GenerateConfig.xml";
+        String path = System.getProperty("user.dir") + "/GenerateConfig.xml";
         getConfig(path);
     }
 
@@ -169,7 +169,7 @@ public class ConfigParser {
             model.setFtlName(modelName + ".ftl");
             model.setBasePackageName(basePackageName);
             model.setOutputFileName(fileName);
-            model.setOutputFilePath(config.getBasePath() + basePackageName.replace(".", "\\\\"));
+            model.setOutputFilePath(config.getBasePath() + basePackageName.replace(".", "/"));
             model.setPackageName(config.getBasePackage() + "." + basePackageName);
         }
     }

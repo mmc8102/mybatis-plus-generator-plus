@@ -7,12 +7,13 @@
 - #### 无需修改代码，仅修改GenerateConfig.xml中的配置即可，更加清晰 
 
 ### 使用方式 
- - ##### 打开src\main\resources 下的 GenerateConfig.xml文件 并对文件进行修改
+ - ##### 1.下载该项目到本地并install到本地仓库,在项目中引用依赖
+ - ##### 2.拷贝src\main\resources 下的 GenerateConfig.xml文件 并对文件进行修改
 ```
     <?xml version="1.0" encoding="UTF-8"?>
     <root>
         <!--配置编码的作者 即 @author 后的名称-->
-        <author>yu_chen</author>
+        <author>wangli</author>
 
         <!-- 暂时仅支持mysql 
             mysql数据库连接 
@@ -39,7 +40,7 @@
     
         <!-- 模板配置 模板文件路径 生成的包名以及文件名 * 代表className 如 Student-->
         <!-- path里面选择配置不同的模板 如model1 都在ftl目录下-->
-        <ftl path="\\ftl\\model-mybatis-plus">
+        <ftl path="/ftl/model-mybatis-plus">
             <param name="model" basePackageName="entity">*.java</param>
             <param name="dao" basePackageName="dao">*Mapper.java</param>
             <param name="mapper" basePackageName="mapper">*Mapper.xml</param>
@@ -49,15 +50,16 @@
         </ftl>
     
 ```
-#### 修改完配置之后 打开com.yu.GenerateCodeRun 这个类直接运行就可以 不需要做任何修改
+#### 3.拷贝根路径下的ftl文件夹放到你项目的根路径下,该文件夹中是对应的模板文件,如果觉得模板生成的文件不是很满意，可以自行进行修改
+#### 4.拷贝打开CodeGenerator到你的项目中(建议放到test文件夹下)  这个类不需要做任何修改 直接运行
 
 ```
-public class GenerateCodeRun {
+public class CodeGenerator {
 
     public static void main(String[] args) throws DocumentException, IOException, TemplateException {
 
         //找到配置文件的路径
-        String path = System.getProperty("user.dir") + "\\src\\main\\resources\\" + "GenerateConfig.xml";
+        String path = System.getProperty("user.dir") + "/src/main/resources/" + "GenerateConfig.xml";
         final Config config = ConfigParser.getConfig(path);
         System.out.println(config);
         //获取得到的表的集合
@@ -186,58 +188,49 @@ public class GenerateCodeRun {
 ### 生成文件预览 以Student为例
 - #### model文件
 ```
-    package com.zynn.count.entity;
+    package cn.mmc8102.mybatisplusgeneratorplus.domain;
     
     import lombok.Data;
     
     /**
     * 学生表
-    * @author yu_chen
-    * @date 2019-11-15 15:06:43
+    * @author wangli
+    * @date 2020-05-29
     **/
     @Data
-    @TableName("bs_student")
-    public class Student extends BaseEntity implements java.io.Serializable{
-    
-    	private static final long serialVersionUID = 1L;
-    
+    public class Student {
     
         /**
          * 
          */
-        @TableId
         private Integer id;
         /**
          * 学生姓名
          */
-        @TableField("name")
         private String name;
         /**
          * 学号
          */
-        @TableField("num")
         private String num;
         /**
          * 创建时间
          */
-        @TableField("create_time")
         private LocalDateTime createTime;
         /**
          * 更新时间
          */
-        @TableField("update_time")
         private LocalDateTime updateTime;
     
     }
 ```
 - #### dao文件
 ```
-package com.zynn.count.dao;
+package cn.mmc8102.mybatisplusgeneratorplus.mapper;
 
 
 /**
-* @author yu_chen
-* @date 2019-11-15 15:06:43
+* @author wangli
+* @date 2020-05-29
 **/
 public interface StudentMapper extends BaseMapper<Student>{
 
@@ -249,9 +242,9 @@ public interface StudentMapper extends BaseMapper<Student>{
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zynn.count.dao.StudentMapper" >
+<mapper namespace="cn.mmc8102.mybatisplusgeneratorplus.mapper.StudentMapper" >
 
-    <resultMap id="BaseResultMap" type="com.zynn.count.dao.Student" >
+    <resultMap id="BaseResultMap" type="cn.mmc8102.mybatisplusgeneratorplus.domain.Student" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="num" property="num" jdbcType="VARCHAR" />
@@ -267,15 +260,15 @@ public interface StudentMapper extends BaseMapper<Student>{
 ```
 - #### Service文件
 ```
-package com.zynn.count.service;
+package cn.mmc8102.mybatisplusgeneratorplus.service;
 
-import com.zynn.count.entity.Student;
+import cn.mmc8102.mybatisplusgeneratorplus.domain.Student;
 
 /**
-* @author yu_chen
-* @date 2019-11-15 15:06:43
+* @author wangli
+* @date 2020-05-29
 **/
-public interface StudentService extends BaseService<Student> {
+public interface StudentService {
 
 
 }
@@ -283,30 +276,30 @@ public interface StudentService extends BaseService<Student> {
 ```
 - #### ServiceImpl文件
 ```
-package com.zynn.count.service.impl;
+package cn.mmc8102.mybatisplusgeneratorplus.service.impl;
 
 
 /**
-* @author yu_chen
-* @date 2019-11-15 15:06
+* @author wangli
+* @date 2020-05-29
 **/
 @Service
-public class StudentServiceImpl extends BaseServiceImpl<StudentMapper, Student> implements StudentService{
+public class StudentServiceImpl implements StudentService{
 
 
 }
 
 ```
-- #### Controller文件（一般用不上）
+- #### Controller文件
 ```
-package com.zynn.count.controller;
+package cn.mmc8102.mybatisplusgeneratorplus.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
-* @author yu_chen
-* @date 2019-11-15 15:06:43
+* @author wangli
+* @date 2020-05-29
 **/
 @Controller
 @RequestMapping("student")

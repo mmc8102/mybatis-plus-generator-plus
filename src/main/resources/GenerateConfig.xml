@@ -30,7 +30,7 @@
 
     <!-- 模板配置 模板文件路径 生成的包名以及文件名 * 代表className 如 Student-->
     <!-- path里面选择配置不同的模板 如model1 都在ftl目录下-->
-    <ftl path="\\ftl\\model-mybatis-plus">
+    <ftl path="/ftl/model-mybatis-plus">
         <param name="model" basePackageName="domain">*.java</param>
         <param name="dao" basePackageName="mapper">*Mapper.java</param>
         <param name="mapper" basePackageName="mapper">*Mapper.xml</param>

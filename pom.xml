@@ -31,7 +31,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,6 +79,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 配置此配置，其他工程才能正常引入jar包 -->
+                    <classifier>exec</classifier>
+                    <!-- 配置此项，与springboot的热部署一起使用，不配置则会不生效  -->
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>

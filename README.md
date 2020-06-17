@@ -3,7 +3,7 @@
 - #### 可以自动生成代码注释从数据库中取得
 - #### 使用freemarker来自定义模板使其更加方便
 - #### 灵活选择模板，可以自行配置多套，并且灵活切换
-- #### 已经给定了预留的模板，可以做到拿来即用
+- #### 已经给定了预留的模板，开箱即用
 - #### 无需修改代码，仅修改GenerateConfig.xml中的配置即可，更加清晰 
 
 ### 使用方式 
@@ -14,40 +14,43 @@
     <root>
         <!--配置编码的作者 即 @author 后的名称-->
         <author>wangli</author>
-
-        <!-- 暂时仅支持mysql 
-            mysql数据库连接 
-            type 数据库类型  
-            dataspace 所需要生成的数据库的名字-->
-        <jdbc type="mysql" database="edu_student">
+        <!--oracle数据库连接-->
+        <!--<jdbc type="oracle" database="">
+            <param name="driverClassName">oracle.jdbc.driver.OracleDriver</param>
+            <param name="url">jdbc:oracle:thin:@172.16.30.100:1521:orcl</param>
+            <param name="username">eims</param>
+            <param name="password">eims</param>
+        </jdbc>-->
+        <!--mysql数据库连接 type 数据库类型  dataspace 所需要生成的数据库的名字-->
+        <jdbc type="mysql" database="test">
             <param name="driverClassName">com.mysql.cj.jdbc.Driver</param>
-            <param name="jdbcUrl">jdbc:mysql://localhost:3306/information_schema?serverTimezone=GMT%2B8</param>
+            <param name="jdbcUrl">jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8</param>
             <param name="username">root</param>
-            <param name="password">chenyu</param>
+            <param name="password">admin</param>
         </jdbc>
         <!--生成类的基包-->
         <!--生成的文件路径跟基类包有关-->
         <!--当前生成文件的路径为/src/main/java/-->
         <!--<basePackage>com.jsly</basePackage>-->
-        <basePackage>com.zynn.count</basePackage>
+        <basePackage>cn.mmc8102.mybatisplusgeneratorplus</basePackage>
     
-        <!--需要生成的实体类和表之间对应关系可配置多个-->
+        <!--需要生成的实体类和表之间对应关系,可以配置多个-->
         <table>
-            <mapping tableName="bs_student" modelName="Student"/>
-            <mapping tableName="eims_user" modelName="User"/>
+            <mapping tableName="employee" modelName="Employee"/>
         </table>
     
     
         <!-- 模板配置 模板文件路径 生成的包名以及文件名 * 代表className 如 Student-->
         <!-- path里面选择配置不同的模板 如model1 都在ftl目录下-->
         <ftl path="/ftl/model-mybatis-plus">
-            <param name="model" basePackageName="entity">*.java</param>
-            <param name="dao" basePackageName="dao">*Mapper.java</param>
+            <param name="model" basePackageName="domain">*.java</param>
+            <param name="dao" basePackageName="mapper">*Mapper.java</param>
             <param name="mapper" basePackageName="mapper">*Mapper.xml</param>
-            <param name="service" basePackageName="service">*Service.java</param>
+            <param name="service" basePackageName="service">I*Service.java</param>
             <param name="serviceImpl" basePackageName="service.impl">*ServiceImpl.java</param>
-            <param name="controller" basePackageName="controller">*Controller.java</param>
+            <param name="controller" basePackageName="web.controller">*Controller.java</param>
         </ftl>
+    </root>
     
 ```
 #### 3.默认使用jar包中的模板,如果觉得模板生成的文件不是很满意，可以拷贝ftl文件夹放到你项目的根路径下,自行进行修改
@@ -85,8 +88,8 @@ public class CodeGenerator {
 ```
 {
     "className":"Student",
-    "tableName":"bs_student",
-    "basePackage":"com.zynn.count",
+    "tableName":"student",
+    "basePackage":"cn.mmc8102",
     "ftlPath":"\\ftl\\model-mybatis-plus",
     "tableComment":"学生表",
     "basePackageMap":{
@@ -269,7 +272,7 @@ import cn.mmc8102.mybatisplusgeneratorplus.domain.Student;
 * @date 2020-05-29
 **/
 public interface IStudentService {
-
+    
 
 }
 
@@ -285,7 +288,8 @@ package cn.mmc8102.mybatisplusgeneratorplus.service.impl;
 **/
 @Service
 public class StudentServiceImpl implements StudentService{
-
+    @Autowired
+    private StudentMapper studentMapper;
 
 }
 
@@ -304,7 +308,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("student")
 public class StudentController {
-
+    @Autowired
+    private IStudentService studentService;
 
 }
 ```

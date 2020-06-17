@@ -7,6 +7,7 @@ package ${basePackageMap['serviceImpl'].packageName};
 **/
 @Service
 public class ${basePackageMap['serviceImpl'].className} implements ${basePackageMap['service'].className}{
-
+    @Autowired
+    private ${basePackageMap['dao'].className} ${basePackageMap['dao'].className ? uncap_first};
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("${basePackageMap['model'].className?uncap_first}")
 public class ${basePackageMap['controller'].className} {
-
+    @Autowired
+    private ${basePackageMap['service'].className} ${basePackageMap['service'].className ? substring(1) ? uncap_first};
 
 }

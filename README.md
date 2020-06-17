@@ -50,7 +50,7 @@
         </ftl>
     
 ```
-#### 3.拷贝根路径下的ftl文件夹放到你项目的根路径下,该文件夹中是对应的模板文件,如果觉得模板生成的文件不是很满意，可以自行进行修改
+#### 3.默认使用jar包中的模板,如果觉得模板生成的文件不是很满意，可以拷贝ftl文件夹放到你项目的根路径下,自行进行修改
 #### 4.拷贝打开CodeGenerator到你的项目中(建议放到test文件夹下)  这个类不需要做任何修改 直接运行
 
 ```
@@ -268,7 +268,7 @@ import cn.mmc8102.mybatisplusgeneratorplus.domain.Student;
 * @author wangli
 * @date 2020-05-29
 **/
-public interface StudentService {
+public interface IStudentService {
 
 
 }

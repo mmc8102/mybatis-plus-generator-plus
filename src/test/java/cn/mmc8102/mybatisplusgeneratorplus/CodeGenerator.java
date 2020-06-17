@@ -22,7 +22,7 @@ public class CodeGenerator {
     public static void main(String[] args) throws DocumentException, IOException, TemplateException {
 
         //找到配置文件的路径
-        String path = System.getProperty("user.dir") + "/src/main/resources/" + "GenerateConfig.xml";
+        String path = System.getProperty("user.dir") + "/src/main/resources/GenerateConfig.xml";
         final Config config = ConfigParser.getConfig(path);
         System.out.println(config);
         //获取得到的表的集合

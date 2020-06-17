@@ -30,22 +30,31 @@ public class GenerateUtil {
      */
     public static void generateTemplate(EntityVO entity, String type) throws IOException, TemplateException {
         Configuration cfg = new Configuration();
-        //模板的的路径
-        String ftlPath = entity.getFtlPath();
         //类名
         String className = entity.getClassName();
-        //模板在类路径下的地址
-        String path = System.getProperty("user.dir") + ftlPath;
         //获取要生成的basePackage
         BasePackage basePackage = makeBasePackage(entity.getBasePackageMap().get(type), className);
+        String path = null;
+        Template template = null;
+        //模板的的路径
+        String ftlPath = entity.getFtlPath();
+        //如果项目根路径下用户没有自定义模板,就是用jar包中默认的模板
+        File file = new File(System.getProperty("user.dir") + "/ftl");
+        if (file.exists() && file.isDirectory()) { //用来测试此路径名表示的文件或目录是否存在
+            //模板在类路径下的地址
+            path = System.getProperty("user.dir") + ftlPath;
+            //创建配置对象
+            cfg.setDirectoryForTemplateLoading(new File(path));
+            //得到模板对象
+            template = cfg.getTemplate(basePackage.getFtlName(), "utf-8");
+        }else{
+            cfg.setClassForTemplateLoading(GenerateUtil.class, ftlPath);
+            template = cfg.getTemplate(basePackage.getFtlName(), "utf-8");
+        }
         //新生成的文件的路径
         String newPath = System.getProperty("user.dir") + basePackage.getOutputFilePath();
         //判断生成路径是否存在  不存在就创建
         PathUtil.checkDirAndCreate(newPath);
-        //创建配置对象
-        cfg.setDirectoryForTemplateLoading(new File(path));
-        //得到模板对象
-        Template template = cfg.getTemplate(basePackage.getFtlName(), "utf-8");
         PathUtil.printFileByObject(entity, template, newPath, basePackage.getOutputFileName());
     }
 

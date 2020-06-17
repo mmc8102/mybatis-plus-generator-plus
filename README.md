@@ -31,7 +31,6 @@
         <!--生成类的基包-->
         <!--生成的文件路径跟基类包有关-->
         <!--当前生成文件的路径为/src/main/java/-->
-        <!--<basePackage>com.jsly</basePackage>-->
         <basePackage>cn.mmc8102.mybatisplusgeneratorplus</basePackage>
     
         <!--需要生成的实体类和表之间对应关系,可以配置多个-->

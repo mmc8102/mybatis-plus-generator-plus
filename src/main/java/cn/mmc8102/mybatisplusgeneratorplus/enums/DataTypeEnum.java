@@ -24,7 +24,8 @@ public enum DataTypeEnum {
     TIME("TIME", "LocalDateTime", "TIMESTAMP"),
     DATETIME("DATETIME", "LocalDateTime", "TIMESTAMP"),
     DATE("DATE", "Date", "TIMESTAMP"),
-    INT("INT", "Integer", "INTEGER");
+    INT("INT", "Integer", "INTEGER"),
+    DOUBLE("DOUBLE", "Double", "DOUBLE");
 
     /**
      * 数据库列的类型
